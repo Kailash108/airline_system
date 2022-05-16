@@ -18,7 +18,7 @@
 
 {% block body %}
     <section class="section section1">
-        <form action="payment"  method="POST">
+        <form action="payment" method="POST">
             {% csrf_token %}
             <div class="row main-row">
                 <div class="col-8">
@@ -108,10 +108,10 @@
                         <div class="note-name"><span>IMPORTANT :</span> Enter your name as it is mentioned on your passport or any government approved ID.</div>
                         <div class="row form-group add-traveller-div-name">
                             <div class="col">
-                                <input type="text" class="form-control" id="fname" placeholder="First name">
+                                <input type="text" name="fname" class="form-control" id="fname"  placeholder="First name">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" id="lname" placeholder="Last name">
+                                <input type="text" name ="lname" class="form-control" id="lname" placeholder="Last name">
                             </div>
                         </div>
                         
@@ -121,12 +121,12 @@
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input gender" value="male">Male
+                                    <input type="radio" class="form-check-input gender" name="gender" value="Male">Male
                                 </label>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input gender" value="female">Female
+                                    <input type="radio" class="form-check-input gender" name="gender" value="Female">Female
                                 </label>
                             </div>
                         </div>
@@ -155,6 +155,11 @@
                             <div class="surcharges-label">Tax: </div>
                             <div class="surcharges-value">₹ <span>{{flightFee}}</span></div>
                             <input type="hidden" id="fee" value="{{fee}}">
+                        </div>
+                        <div class="row surcharges">
+                            <div class="surcharges-label">Discount({{couponCode}}): </div>
+                            <div class="surcharges-value">₹ <span>{{flightDiscount}}</span></div>
+                            <input type="hidden" id="fee" value="{{discountFee}}">
                         </div>
                         <hr>
                         <div class="total-fare">

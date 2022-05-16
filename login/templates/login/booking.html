@@ -90,37 +90,49 @@
         <button onclick="myFunction()" class="dropbtn"><i class="fas fa-bars" onclick="myFunction()"></i></button>
         <div id="myDropdown" class="dropdown-content">
             {% if user.is_authenticated == False %}<a href="login">Login</a> 
-            <a href="http://127.0.0.1:8000/login/register">Register</a>
-            {% else %}<a href="http://127.0.0.1:8000/login/logout">Logout</a> 
-            <a href="http://127.0.0.1:8000/login/feedback">Feedback</a>
-            <a href="http://127.0.0.1:8000/login/faq">FAQ</a>
-            <a href="https://group8-cse-c.herokuapp.com/">Chat</a>
+                <a href="./register">Register</a>
+            {% else %}
+                <a href="./logout">Logout</a> 
+                <a href="./feedback">Feedback</a>
+                <a href="./faq">FAQ</a>
+                <a href="https://group8-cse-c.herokuapp.com/">Chat</a>
             {% endif%}
-         
-        </div> <button class="dropbtn" >Home</button> 
+        </div> 
+        <button class="dropbtn" style="background-color: #fae987;">
+            <a style="color:black" href="booking">Home</a>
+        </button>
         <button class="dropbtn">
-            <a href="contact" style="color:black">About Us</a></button>
+            <a href="contact" style="color:black">About Us</a>
+        </button>
         <button class="dropbtn">
             <a style="color:black" href="https://ajaybezawada.github.io/explore-group8/">Explore</a>
-        </button> 
-       
+        </button>
         {% if user.is_authenticated %}
-        
+            <button class="dropbtn">
+                <a style="color:black" href="./dashboard">Dashboard</a>
+            </button> 
+            <button class="dropbtn">
+                <a style="color:black" href="./details">Update Profile</a>
+            </button>
+            <button type="button" class="dropbtn">
+                <a style="color:black" href="./ticket-status">Ticket Status</a>
+            </button>
+            <button type="button" class="dropbtn">
+                <a style="color:black" href="./discount">Offers</a>
+            </button>
         {% else %}
         
         <button type="button" class="dropbtn">
-            <a style="color:black" href="http://127.0.0.1:8000/login/register">Register</a>
+            <a style="color:black" href="./feedback">Feedback</a>
         </button>
-        <button type="button" class="dropbtn">
-            <a style="color:black" href="http://127.0.0.1:8000/login/feedback">Feedback</a>
-        </button>
+            
         {% endif%}
     </div>
     
 
     {% if user.is_authenticated %}
         
-    <button type="button" class="dropbtn1" ><a href="http://127.0.0.1:8000/login/register">Hello, {{ user.username }}</a></button>
+    <button type="button" class="dropbtn1" ><a href="./register">Hello, {{ user.username }}</a></button>
     {% else %}
     {% endif%}
       
@@ -146,13 +158,6 @@
       }
       </script>
 
-
-
-
-
-
-
-
     <section class="banner" style=background-image:url('{% static "booking_img/banner-bg.jpg"%}') id="top">
         <div class="container">
             <div class="row">
@@ -170,7 +175,7 @@
                             </ul>
                         </div> 
                         <div class="page-direction-button">
-                            <a href="http://127.0.0.1:8000/login/contact"><i class="fa fa-phone"></i>Contact Us Now</a>
+                            <a href="./contact"><i class="fa fa-phone"></i>Contact Us Now</a>
                         </div>  
                     </div>
                 </div>
@@ -209,18 +214,7 @@
                                                 </select>
                                             </fieldset>
                                         </div>
-                                        <div class="col-md-6">
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                            <input type="radio" class="form-check-input trip-type" id="one-way" name="TripType" value="1" checked>One-way
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                            <input type="radio" class="form-check-input trip-type" id="round-trip" name="TripType" value="2" {% if trip_type == '2' %}checked{% endif %}>Round Trip
-                                            </label>
-                                        </div>
-                                        </div>
+                                        
                                         <div class="col-md-6">
                                             <fieldset>
                                                 <label for="departure">Departure date:</label>
@@ -228,12 +222,12 @@
                                             </fieldset>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <fieldset>
                                                 <label for="departure">Return Date: </label>
                                                 <input type="text" name="Return" min="{{min_date}}" max="{{max_date}}" id="return_date" placeholder="Select date .." required="" class="form-control date" value="{{return_date}}" disabled>
                                             </fieldset>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="col-md-6">
                                             <fieldset>
                                                 <label for="return">Return date:</label>
@@ -257,7 +251,7 @@
                                         {% if user.is_authenticated %}
                                         <div class="col-md-6">
                                             <fieldset>
-                                                <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                                <button type="submit" id="form-submit" class="btn">Get Flights</button>
                                             </fieldset>
                                         </div>
                                         {% else %}
@@ -301,269 +295,58 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>Check Weather For 5 NEXT Days</h2>
+                        <h2>Check Weather For The NEXT 7 Days</h2>
                     </div>
                 </div>
                 <div class="wrapper">
                     <div class="col-md-12">
                         <div class="weather-content" style=background-image:url('{% static "booking_img/weather-bg.jpg"%}')>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <ul class="tabs clearfix" data-tabgroup="second-tab-group">
-                                        <li><a href="#monday" class="active">Monday</a></li>
-                                        <li><a href="#tuesday">Tuesday</a></li>
-                                        <li><a href="#wednesday">Wednesday</a></li>
-                                        <li><a href="#thursday">Thursday</a></li>
-                                        <li><a href="#friday">Friday</a></li>
-                                    </ul>    
-                                </div>
+                               
                                 <div class="col-md-12">
                                     <section id="second-tab-group" class="weathergroup">
                                         <div id="monday">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>USA</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-03.png'%}" alt="image3">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">32&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>26&deg;</span></li>
-                                                            <li>12PM <span>32&deg;</span></li>
-                                                            <li>6PM <span>28&deg;</span></li>
-                                                            <li>12AM <span>22&deg;</span></li>
-                                                        </ul>
-                                                    </div>
+                                                    <a class="weatherwidget-io" href="https://forecast7.com/en/11d0276d96/coimbatore/" data-label_1="COIMBATORE" data-label_2="WEATHER" data-theme="blue-mountains" >COIMBATORE WEATHER</a>
+                                                    <script>
+                                                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                                                    </script>
+<br>
+<a class="weatherwidget-io" href="https://forecast7.com/en/19d0872d88/mumbai/" data-label_1="MUMBAI" data-label_2="WEATHER" data-theme="retro-sky" >MUMBAI WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>Korea S</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-02.png'%}" alt="image2">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">28&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>20&deg;</span></li>
-                                                            <li>12PM <span>28&deg;</span></li>
-                                                            <li>6PM <span>26&deg;</span></li>
-                                                            <li>12AM <span>18&deg;</span></li>
-                                                        </ul>
-                                                    </div>
+                                                    <a class="weatherwidget-io" href="https://forecast7.com/en/28d6677d23/delhi/" data-label_1="DELHI" data-label_2="WEATHER" data-theme="fall-leaves" >DELHI WEATHER</a>
+                                                    <script>
+                                                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                                                    </script>
+                                                    <br>
+                                                    <a class="weatherwidget-io" href="https://forecast7.com/en/22d5788d36/kolkata/" data-label_1="KOLKATA" data-label_2="WEATHER" data-theme="grass" >KOLKATA WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>India</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-01.png'%}" alt="image1">
-                                                        </div>
-                                                        <span style="background-color: black; border-radius: 7px;">33&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>26&deg;</span></li>
-                                                            <li>12PM <span>33&deg;</span></li>
-                                                            <li>6PM <span>29&deg;</span></li>
-                                                            <li>12AM <span>27&deg;</span></li>
-                                                        </ul>
-                                                    </div>
+                                                    <a class="weatherwidget-io" href="https://forecast7.com/en/12d9777d59/bengaluru/" data-label_1="BANGALORE" data-label_2="WEATHER" data-theme="mountains" >BANGALORE WEATHER</a>
+                                                    <script>
+                                                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                                                    </script>
+                                                    <br>
+                                                    <a class="weatherwidget-io" href="https://forecast7.com/en/13d0880d27/chennai/" data-label_1="MADRAS" data-label_2="WEATHER" data-theme="marine" >MADRAS WEATHER</a>
+                                                    <script>
+                                                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                                                    </script>
+
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="tuesday">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>USA</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-02.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">28&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>18&deg;</span></li>
-                                                            <li>12PM <span>27&deg;</span></li>
-                                                            <li>6PM <span>25&deg;</span></li>
-                                                            <li>12AM <span>17&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>Korea S</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-03.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">31&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>19&deg;</span></li>
-                                                            <li>12PM <span>28&deg;</span></li>
-                                                            <li>6PM <span>22&deg;</span></li>
-                                                            <li>12AM <span>18&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>India</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-01.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">26&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>19&deg;</span></li>
-                                                            <li>12PM <span>26&deg;</span></li>
-                                                            <li>6PM <span>22&deg;</span></li>
-                                                            <li>12AM <span>20&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="wednesday">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>USA</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-03.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">31&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>19&deg;</span></li>
-                                                            <li>12PM <span>28&deg;</span></li>
-                                                            <li>6PM <span>22&deg;</span></li>
-                                                            <li>12AM <span>18&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>Korea S</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-01.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">34&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>28&deg;</span></li>
-                                                            <li>12PM <span>34&deg;</span></li>
-                                                            <li>6PM <span>30&deg;</span></li>
-                                                            <li>12AM <span>29&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>India</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-02.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">28&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>18&deg;</span></li>
-                                                            <li>12PM <span>27&deg;</span></li>
-                                                            <li>6PM <span>25&deg;</span></li>
-                                                            <li>12AM <span>17&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="thursday">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>USA</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-01.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">27&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>21&deg;</span></li>
-                                                            <li>12PM <span>27&deg;</span></li>
-                                                            <li>6PM <span>22&deg;</span></li>
-                                                            <li>12AM <span>18&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>Korea S</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-02.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">28&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>18&deg;</span></li>
-                                                            <li>12PM <span>27&deg;</span></li>
-                                                            <li>6PM <span>25&deg;</span></li>
-                                                            <li>12AM <span>17&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>India</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-03.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">31&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>19&deg;</span></li>
-                                                            <li>12PM <span>28&deg;</span></li>
-                                                            <li>6PM <span>22&deg;</span></li>
-                                                            <li>12AM <span>18&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="friday">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>USA</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-03.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">33&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>28&deg;</span></li>
-                                                            <li>12PM <span>33&deg;</span></li>
-                                                            <li>6PM <span>29&deg;</span></li>
-                                                            <li>12AM <span>27&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>Korea S</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-02.png'%}" alt="">
-                                                        </div>
-                                                        <span  style="background-color: black; border-radius: 7px;">31&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>24&deg;</span></li>
-                                                            <li>12PM <span>31&deg;</span></li>
-                                                            <li>6PM <span>26&deg;</span></li>
-                                                            <li>12AM <span>23&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="weather-item">
-                                                        <h6>India</h6>
-                                                        <div class="weather-icon">
-                                                            <img src="{% static 'booking_img/weather-icon-01.png'%}" alt="">
-                                                        </div>
-                                                        <span >28&deg;C</span>
-                                                        <ul class="time-weather">
-                                                            <li>6AM <span>24&deg;</span></li>
-                                                            <li>12PM <span>28&deg;</span></li>
-                                                            <li>6PM <span>26&deg;</span></li>
-                                                            <li>12AM <span>22&deg;</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
+                                     
+                                       
+                                       
                                     </section>
                                 </div>
                             </div>

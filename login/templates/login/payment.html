@@ -19,11 +19,13 @@
           />
         </div>
         <div class="rightside">
-          <form action="ticket" method="POST">
+          <form action="payment_process" method="POST">
             
             {% csrf_token %}
             <h1>CheckOut</h1>
             <h2>Payment Information</h2>
+            <p>Amount To Be Paid</p>
+            <input type="text" class="inputbox" name="name" value="{{totalFare}}" disabled />
             <p>Cardholder Name</p>
             <input type="text" class="inputbox" name="name" required />
             <p>Card Number</p>
@@ -38,14 +40,14 @@
           
           <div class="expcvv">
             <p class="expcvv_text">Expiry</p>
-            <input maxlength="6" type="text" class="inputbox" name="exp_date" id="exp_date" placeholder="mm/yyyy" required />
+            <input maxlength="7" type="text" class="inputbox" name="exp_date" id="exp_date" placeholder="mm/yyyy" required />
 
             <p class="expcvv_text2">CVV</p>
             <input maxlength="3" type="password" class="inputbox" name="cvv" id="cvv" required />
           </div>
             
           <p></p>
-            <input type="submit" class="button" placeholder="Checkout"/>
+            <input type="submit" class="button" placeholder="Submit"/>
           </form>
         </div>
       </div>

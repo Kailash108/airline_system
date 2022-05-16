@@ -9,12 +9,12 @@ function flight_duration() {
     });
 }
 
-
 function add_traveller() {
     let div = document.querySelector('.add-traveller-div');
     let fname = div.querySelector('#fname');
     let lname = div.querySelector('#lname');
     let gender = div.querySelectorAll('.gender');
+    
     let gender_val = null
     if(fname.value.trim().length === 0) {
         alert("Please enter First Name.");
@@ -75,7 +75,9 @@ function add_traveller() {
         document.querySelector(".base-fare-value span").innerText = parseInt(fare)*parseInt(pcount);
         document.querySelector(".total-fare-value span").innerText = (parseInt(fare)*parseInt(pcount))+parseInt(fee);
     }
-
+    
+    console.log('vjsviadi')
+    console.log(fname, lname, gender)
 }
 
 function del_traveller(btn) {

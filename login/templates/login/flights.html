@@ -3,7 +3,7 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'search_style.css' %}">
     <link rel="stylesheet" href="{% static 'search2_style.css' %}">
-    <!--<script src="{% static 'js/search.js' %}"></script>-->
+    <script src="{% static 'js/search.js' %}"></script>
     <script src="{% static 'search2.js' %}"></script>
 {% endblock %}
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Flights</title>
 </head>
-<body>
+<body >
 <div class="query-data-div">
     <div class="container">
         <div class="trip-places">
@@ -61,7 +61,7 @@
                             <div class="company-name">{{i.coname}}</div>
                             <div class="plane-name">{{i.Fnumber}}</div>
                         </div>
-                    </div>
+                    </div><button type="submit" class="btn btn-primary btn-danger" onclick="window.location.href='http://127.0.0.1:8000/login/seat';">Select Seat</button>&nbsp; &nbsp;
                     <div class="flight-time flight-time-div">
                         <div class="flight-origin-time">
                             <div class="flight-time">

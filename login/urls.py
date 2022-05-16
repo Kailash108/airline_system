@@ -18,6 +18,16 @@ urlpatterns = [
     path('faq',views.faq),
     path('explore',views.explore),
     path('ticket', views.ticket),
+    path('payment_process', views.payment_process),
+    path('downloadTicket', views.downloadTicket),
+    path('dashboard', views.dashboard),
+    path('showTicket', views.showTicket),
+    path('cancelTicket', views.cancelTicket),
+    path('discount', views.discount),
+    path('seat', views.seat),
+    path('details', views.details,name='user-profile'),
+    path('ticket-status', views.ticketStatus),
+    path('details/update', views.details_update,name='user-profile-update'),
     
     
 
