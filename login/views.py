@@ -476,12 +476,12 @@ def ticketStatus(request):
     if request.method == 'POST':
         ticket = Ticket_Details.objects.all()
         ticketNum = request.POST.get('ticketid')
-        for i in ticket:
-            if(i.TicketNumber == ticketNum):
-                print('CONFIRMED')
-                return render(request, 'login/ticket-status.html', {'status': 'CONFIRMED'})
-            else:
-                print('CANCELLED')
-                return render(request, 'login/ticket-status.html', {'status': 'CANCELLED'})   
+        arr = []
+        for i in ticket.iterator():
+            arr.append(i.TicketNumber)
+        if(ticketNum in arr):
+            return render(request, 'login/ticket-status.html', {'status': 'CONFIRMED'})
+        else:
+            return render(request, 'login/ticket-status.html', {'status': 'CANCELLED'})   
     return render(request, 'login/ticket-status.html')
 
